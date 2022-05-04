@@ -1,7 +1,7 @@
 <?php
 include "getRacine.php";
-include "$racine/controleur/controleurPrincipal.php";
-include_once "$racine/modele/authentification.inc.php";
+include "$racine/Controleur/controleurPrincipale.php";
+include_once "$racine/Modele/bd.authentification.inc.php";
 
 
 
@@ -14,8 +14,7 @@ else{
 }
 
 $fichier = controleurPrincipal($action);
-include "$racine/controleur/$fichier";
+include "$racine/Controleur/$fichier";
 
 
 ?>
-     
