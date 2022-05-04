@@ -23,7 +23,7 @@ function getUtilisateurByMailU($mailU) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from utilisateur where mailU=:mailU");
+        $req = $cnx->prepare("select * from utilisateur where mail=:mailU");
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->execute();
         
@@ -59,7 +59,7 @@ function updtMdpUtilisateur($mailU, $mdpU) {
         $cnx = connexionPDO();
 
         $mdpUCrypt = crypt($mdpU, "sel");
-        $req = $cnx->prepare("update utilisateur set mdpU=:mdpU where mailU=:mailU");
+        $req = $cnx->prepare("update utilisateur set mdp=:mdpU where mail=:mailU");
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->bindValue(':mdpU', $mdpUCrypt, PDO::PARAM_STR);
 
@@ -76,7 +76,7 @@ function updtPseudoUtilisateur($mailU, $pseudoU) {
     try {
         $cnx = connexionPDO();
 
-        $req = $cnx->prepare("update utilisateur set pseudoU=:pseudoU where mailU=:mailU");
+        $req = $cnx->prepare("update utilisateur set pseudo=:pseudoU where mail=:mailU");
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->bindValue(':pseudoU', $pseudoU, PDO::PARAM_STR);
 
