@@ -6,7 +6,7 @@ function getBdByIdBD($idBD) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from bandedessine where idBD=:idBD");
+        $req = $cnx->prepare("select * from bandedessinee where id=:idBD");
         $req->bindValue(':idBD', $idBD, PDO::PARAM_INT);
         $req->execute();
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
@@ -22,7 +22,7 @@ function getBD() {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from bandedessine");
+        $req = $cnx->prepare("select * from bandedessinee");
         $req->execute();
 
         $ligne = $req->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +44,7 @@ function getBDByNomBD($nomBD) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from bandedessine where nomR like :nomBD");
+        $req = $cnx->prepare("select * from bandedessinee where libelle like :nomBD");
         $req->bindValue(':nomBD', "%".$nomBD."%", PDO::PARAM_STR);
 
         $req->execute();
@@ -66,7 +66,7 @@ function getBDbyAuteur($idAuteur) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select * from resto where voieAdrR like :voieAdrR and cpR like :cpR and villeR like :villeR");
+        $req = $cnx->prepare("SELECT bandedessinee.* FROM bandedessinee JOIN auteurbd ON bandedessinee.id = auteurbd.idBD WHERE idAuteur = :idAuteur");
         $req->bindValue(':idAuteur', $idAuteur, PDO::PARAM_INT);
         $req->execute();
 
@@ -88,7 +88,7 @@ function getBDAimesByMailU($mailU) {
 
     try {
         $cnx = connexionPDO();
-        $req = $cnx->prepare("select bandedessine.* from resto,aimer where bandedessine.idBD = aimer.idBD and mailU = :mailU");
+        $req = $cnx->prepare("SELECT bandedessinee.* FROM bandedessinee JOIN aimer ON bandedessinee.id = aimer.idBD JOIN utilisateur ON aimer.idUtil = utilisateur.id WHERE utilisateur.mail = :mailU");
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->execute();
 
