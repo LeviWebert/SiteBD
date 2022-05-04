@@ -109,7 +109,7 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     header('Content-Type:text/plain');
 
     echo "getBdByIdBD() : \n";
-    print_r(getBdByIdBD());
+    print_r(getBdByIdBD(2));
 
     echo "getBD(1) : \n";
     print_r(getBD(1));

@@ -8,7 +8,7 @@ function login($mailU, $mdpU) {
     }
 
     $util = getUtilisateurByMailU($mailU);
-    $mdpBD = $util["mdpU"];
+    $mdpBD = $util["mdp"];
 
     if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
         // le mot de passe est celui de l'utilisateur dans la base de donnees
