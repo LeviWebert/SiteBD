@@ -10,6 +10,7 @@ function controleurPrincipal($action){
     $lesActions["sous_cote"] = "sous-cote.php";
     $lesActions["recherche"] = "recherche.php";
     $lesActions["connexion"] = "listeBD.php";
+    $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["profil"] = "profil.php";
