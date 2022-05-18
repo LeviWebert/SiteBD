@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h2>Bienvenue sur le site BandeDessine</h2>
 <nav>
         <ul id="menuGeneral">
                 <li><a href="./?action=accueil">Accueil</a></li> 
