@@ -9,7 +9,7 @@ function controleurPrincipal($action){
     $lesActions["tendance"] = "tendance.php";
     $lesActions["sous_cote"] = "sous-cote.php";
     $lesActions["recherche"] = "recherche.php";
-    $lesActions["connexion"] = "listeBD.php";
+    $lesActions["connexion"] = "connexion.php";
     $lesActions["deconnexion"] = "deconnexion.php";
     $lesActions["inscription"] = "inscription.php";
     $lesActions["deconnexion"] = "deconnexion.php";

@@ -26,8 +26,11 @@ function getUtilisateurByMailU($mailU) {
         $req = $cnx->prepare("select * from utilisateur where mail = :mailU");
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->execute();
-        
         $resultat = $req->fetch(PDO::FETCH_ASSOC);
+        if($resultat == false)
+        {
+            return array();
+        }
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
@@ -39,8 +42,13 @@ function addUtilisateur($mailU, $mdpU, $pseudoU) {
     try {
         $cnx = connexionPDO();
 
+        $maxId = $cnx->prepare("SELECT MAX(id) FROM utilisateur");
+        $maxId->execute();
+        $maxId = $maxId->fetch(PDO::FETCH_NUM);
+        $maxId = $maxId[0] + 1;
         $mdpUCrypt = crypt($mdpU, "sel");
-        $req = $cnx->prepare("insert into utilisateur (mail, mdp, pseudo) values(:mailU,:mdpU,:pseudoU)");
+        $req = $cnx->prepare("insert into utilisateur (id,mail, mdp, pseudo) values(:idU,:mailU,:mdpU,:pseudoU)");
+        $req->bindValue(":idU",$maxId,PDO::PARAM_INT);
         $req->bindValue(':mailU', $mailU, PDO::PARAM_STR);
         $req->bindValue(':mdpU', $mdpUCrypt, PDO::PARAM_STR);
         $req->bindValue(':pseudoU', $pseudoU, PDO::PARAM_STR);

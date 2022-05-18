@@ -8,13 +8,20 @@ function login($mailU, $mdpU) {
     }
 
     $util = getUtilisateurByMailU($mailU);
-    $mdpBD = $util["mdp"];
+    if(!empty($util))
+    {
+        $mdpBD = $util["mdp"];
+        echo isLoggedOn();
 
-    if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
-        // le mot de passe est celui de l'utilisateur dans la base de donnees
-        $_SESSION["mailU"] = $mailU;
-        $_SESSION["mdpU"] = $mdpBD;
+        if (trim($mdpBD) == trim(crypt($mdpU, $mdpBD))) {
+            // le mot de passe est celui de l'utilisateur dans la base de donnees
+            $_SESSION["mailU"] = $mailU;
+            $_SESSION["mdpU"] = $mdpBD;
+
+        }
     }
+
+    
 }
 
 function logout() {
@@ -42,9 +49,9 @@ function isLoggedOn() {
     }
     $ret = false;
 
-    if (isset($_SESSION["mailU"])) {
-        $util = getUtilisateurByMailU($_SESSION["mailU"]);
-        if ($util["mailU"] == $_SESSION["mailU"] && $util["mdpU"] == $_SESSION["mdpU"]
+    if (isset($_SESSION["mail"])) {
+        $util = getUtilisateurByMailU($_SESSION["mail"]);
+        if ($util["mail"] == $_SESSION["mail"] && $util["mdp"] == $_SESSION["mdp"]
         ) {
             $ret = true;
         }
