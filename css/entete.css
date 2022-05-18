@@ -1,0 +1,8 @@
+#menuGeneral
+{
+    background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: blueviolet;
+}
