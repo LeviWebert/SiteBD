@@ -1,8 +1,8 @@
 <?php
-
-function connexionPDO() {
+function connexionPDO()
+{
     $login = "root";
-    $mdp = "";
+    $mdp = "root";
     $bd = "bddsitebd";
     $serveur = "localhost";
 

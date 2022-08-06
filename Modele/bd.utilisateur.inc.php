@@ -1,6 +1,6 @@
 <?php
 
-include_once "bd.inc.php";
+if(file_exists("bd.inc.php")) include_once "bd.inc.php";
 
 function getUtilisateurs() {
     $resultat = array();
